@@ -35,6 +35,6 @@ We are focusing our efforts this week to conceptualize the connection between da
 - Andres Alejandro Baeza-Castro
 - Raquel Lana
 - Mercedes Pascual
--Andrew Dobson
+- Andrew Dobson
 [download]: https://files.sesync.org/pydio/public/09bb83
 [CONTRIBUTING.md]: CONTRIBUTING.md
