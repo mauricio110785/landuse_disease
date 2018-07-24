@@ -9,7 +9,7 @@ If the repository does not contain a data folder, [download] a zipped data file 
 ## Collaborators
 
 - Mauricio Santos
-- Andres Baeza
+- Andres Alejandro Baeza-Castro
 - Raquel Lana
 [download]: https://files.sesync.org/pydio/public/09bb83
 [CONTRIBUTING.md]: CONTRIBUTING.md
