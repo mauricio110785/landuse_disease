@@ -5,16 +5,13 @@ The Amazonian region of Peru and Brazil are undergoing large-scale ecological an
 Our team is investigating how these changes connect to the population dynamics of infectious diseases, especially malaria. We aim to develop an integrated model that will combine geospatial and epidemiological simulation with agent-based simulation to represent these complex socio-ecological interactions and feedback. The team is using remote sensing data, epidemiological time series, and socio-economic survey data. 
 We are focusing our efforts this week to conceptualize the connection between data and models.
 
-
-
-
 ## Data
 ### Survey data  
 - Self-reported malaria in the last 12 months 
+- Inquiry about their history of malaria infections  
 - Indirect effects of malaria
 - Morbidity
 - Demographic information from the interviewee and the house mates  
-- Inquiry about their history of malaria infections  
 - Records the ownership of objects such as appliances and vehicles  
 - Records all the occupations and sources of income of the householders  
 - Five blocks collect data on house construction material  
