@@ -11,5 +11,7 @@ If the repository does not contain a data folder, [download] a zipped data file 
 - Mauricio Santos
 - Andres Alejandro Baeza-Castro
 - Raquel Lana
+- Mercedes Pascual
+
 [download]: https://files.sesync.org/pydio/public/09bb83
 [CONTRIBUTING.md]: CONTRIBUTING.md
