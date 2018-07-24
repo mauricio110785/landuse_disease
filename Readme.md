@@ -1,6 +1,6 @@
 # README.md
 
-A `README.md` file is a very useful component of any project repository. As you can (or may soon) see, it is automatically rendered on GitHub as a simple "homepage" for your project. Instructions for creating your own GitHub repository from these files may be given during the course. The same instructions are also summarized in [CONTRIBUTING.md].
+The goal of this project is understand diseases transmition dynamcis in the context of land use change in the Amazon region. We will focus in the conection between socioeconomic level, human movement, behaviour, environmental change a
 
 ## Data
 
