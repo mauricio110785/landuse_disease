@@ -22,5 +22,4 @@ coordinates(covar)<- ~ Leste + Norte
 #extract land-use types from raster image
 new_ext=extract(LU,covar)
 
-
 hist(new_ext)
