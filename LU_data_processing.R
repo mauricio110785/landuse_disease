@@ -22,4 +22,5 @@ coordinates(covar)<- ~ Leste + Norte
 #extract land-use types from raster image
 new_ext=extract(LU,covar)
 
-hist(new_ext)
+# add new column with LU to the table
+covar=mutate(covar@data,LU=new_ext)
