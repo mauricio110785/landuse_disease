@@ -1,0 +1,23 @@
+---
+title: "Data survey"
+author: "Raquel Lana, Andres Baeza, Mauricio Santos Vega"
+date: "25/07/2018"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+# Data exploration
+
+### Import database
+```{r setup, include=FALSE}
+d <- read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_survey.csv')
+head(d)
+
+```
+
+
+```{r}
+summary(d)
+dim(d)
+```
+
