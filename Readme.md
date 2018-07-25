@@ -36,5 +36,5 @@ complete
 - Raquel Lana
 - Mercedes Pascual
 - Andrew Dobson    
-[download]: https://files.sesync.org/pydio/public/09bb83
+[download]: https://files.sesync.org/pydio/public/09bb83  
 [CONTRIBUTING.md]: CONTRIBUTING.md
