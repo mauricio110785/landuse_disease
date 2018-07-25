@@ -1,5 +1,5 @@
 ## import the files into the shared space
-file.symlink('/nfs/infectiousdiseases-data/RasterAllYears/','Rasterall')
+#file.symlink('/nfs/infectiousdiseases-data/RasterAllYears/','Rasterall')
 
 # read the files 
 library(raster)
@@ -28,5 +28,3 @@ new_ext=extract(LU,covar)
 covar=dplyr::mutate(covar@data,LU=new_ext)
 
 
-require(ggplot2)
-ggplot(data=covar,aes(x=LU,y=mal.dom12_pos))+boxplot()

@@ -1,0 +1,39 @@
+---
+title: "landUseChanges"
+author: "Andres, Raquel, Mauricio"
+date: "7/25/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(raster)
+LU_2014<-raster('~/landuse_disease/Rasterall/ACRE_2014/AC_2014_RASTER.tif')
+LU_2004<-raster('~/landuse_disease/Rasterall/ACRE_2004/AC_2004_RASTER.tif')
+```
+
+
+
+```{r}
+f04<-freq(LU_2004)
+f14<-freq(LU_2014)
+f04=as.data.frame(f04)
+f14=as.data.frame(f14)
+
+dat_LU14<-as.data.frame(LU_2014@data@attributes) 
+dat_LU04<-as.data.frame(LU_2004@data@attributes)
+
+f04$value %in% f14$value
+m_tableLUchange<-merge(dat_LU14,dat_LU04,by="color")
+
+```
+
+```{r}
+barplot(height = (m_tableLUchange$Count.x-m_tableLUchange$Count.y)/(m_tableLUchange$Count.x+m_tableLUchange$Count.y),names.arg=m_tableLUchange$tc_2014,cex.name=0.4)
+
+
+```
