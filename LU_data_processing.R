@@ -1,9 +1,9 @@
 ## import the files into the shared space
-file.symlink('/nfs/infectiousdiseases-data/_fillBuffer500m','Raster')
+file.symlink('/nfs/infectiousdiseases-data/RasterAllYears/','Rasterall')
 
 # read the files 
 library(raster)
-LU<-raster('~/landuse_disease/Raster/ComposicaoBuffer500m_TC14.tif')
+LU<-raster('~/landuse_disease/Rasterall/ACRE_2014/AC_2014_RASTER.tif')
 
 ## read csv files
 covar<-read.table('~/landuse_disease/Raster/Loc_Tipo_SIGLA.csv',header = T,sep=",")
@@ -11,8 +11,10 @@ covar<-read.table('~/landuse_disease/Raster/Loc_Tipo_SIGLA.csv',header = T,sep="
 ## overlap raster with database
 #create a spatil point object
 #covar=covar[-which(is.na(covar$Leste)),]
-coordinates(covar)<- ~ Leste + Norte 
-
+#coordinates(covar)<- ~ Leste + Norte 
+coordinates(covar)<- ~ longitude  + latitude 
+plot(LU)
+points(covar,add=T,col='red')
 #add a projection
 #crs(covar)<-CRS("+proj=longlat +datum=WGS84")
 
@@ -23,4 +25,8 @@ coordinates(covar)<- ~ Leste + Norte
 new_ext=extract(LU,covar)
 
 # add new column with LU to the table
-covar=mutate(covar@data,LU=new_ext)
+covar=dplyr::mutate(covar@data,LU=new_ext)
+
+
+require(ggplot2)
+ggplot(data=covar,aes(x=LU,y=mal.dom12_pos))+boxplot()
