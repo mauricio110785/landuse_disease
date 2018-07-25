@@ -28,6 +28,10 @@ complete
 ### SIVEP data
 complete  
 
+### Surveyed localities in Acre
+Find all surveyed localities and the urban gradient classification!  
+https://rawgit.com/anapdalasta/Oficina-Alto-Juru-/master/index.html
+
 
 ## Collaborators
 
