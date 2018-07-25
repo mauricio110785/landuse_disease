@@ -7,10 +7,11 @@ LU<-raster('~/landuse_disease/Raster/ComposicaoBuffer500m_TC14.tif')
 
 ## read csv files
 covar<-read.table('~/landuse_disease/Raster/Loc_Tipo_SIGLA.csv',header = T,sep=",")
-
+covar<-read.table('~/landuse_disease/Raster/UTM_pontosColeta.csv',header = T,sep=",")
 ## overlap raster with database
 #create a spatil point object
 coordinates(covar)<- ~ longitude + latitude 
+coordinates(covar)<- ~ Leste + Norte 
 #add a projection
 crs(covar)<-CRS("+proj=longlat +datum=WGS84")
 
