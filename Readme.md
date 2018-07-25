@@ -39,7 +39,7 @@ https://rawgit.com/anapdalasta/Oficina-Alto-Juru-/master/index.html
 
 ## Collaborators
 
-- Andres Baeza, University of Arizona
+- Andres Baeza, Arizona State University
 - Mercedes Pascual, University of Chicago
 - Mauricio Santos Vega, University of Chicago
 - Raquel Lana, Fundação Oswaldo Cruz
