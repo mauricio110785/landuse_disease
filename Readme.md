@@ -1,4 +1,4 @@
-# README.md
+# Project description
 
 ## Introduction
 
@@ -24,9 +24,9 @@ We are focusing our efforts this week to conceptualize the connection between da
 - Mobility by motivation, frequency and time spent
 
 ### Remote Sensing
-
+complete  
 ### SIVEP data
-
+complete  
 
 
 ## Collaborators
@@ -35,6 +35,6 @@ We are focusing our efforts this week to conceptualize the connection between da
 - Andres Alejandro Baeza-Castro
 - Raquel Lana
 - Mercedes Pascual
-- Andrew Dobson
+- Andrew Dobson    
 [download]: https://files.sesync.org/pydio/public/09bb83
 [CONTRIBUTING.md]: CONTRIBUTING.md
