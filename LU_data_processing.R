@@ -9,5 +9,15 @@ LU<-raster('~/landuse_disease/Raster/ComposicaoBuffer500m_TC14.tif')
 covar<-read.table('~/landuse_disease/Raster/Loc_Tipo_SIGLA.csv',header = T,sep=",")
 
 ## overlap raster with database
+#create a spatil point object
+coordinates(covar)<- ~ longitude + latitude 
+#add a projection
+crs(covar)<-CRS("+proj=longlat +datum=WGS84")
 
-coordinates(LU)<- ~longitude + latitude 
+#change the projection
+covar_trs=spTransform(covar,CRSobj = crs(LU))
+
+#extract land-use types from raster image
+new_ext=extract(LU,covar)
+
+hist(new_ext)
