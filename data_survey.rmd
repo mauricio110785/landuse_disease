@@ -17,7 +17,7 @@ names(d)
 
 ```
 
-TERMINAR DE TRADUZIR
+Obs.: TERMINAR DE TRADUZIR
 
 ### Variables dictionary
 **n.moradore** s= numero de moradores no domicilio  
@@ -26,7 +26,8 @@ TERMINAR DE TRADUZIR
 **p.mal.dom12** = proporcao de moradores com malaria pelo menos 1x nos ultimos 12 meses  
 **Tipo_Loc_Atual1** = tipo de localidade, ML.u: Mâncio Lima urbano, RA.u: Rodrigues Alves urbano, ML.r: rural, RA.r: rural.  
 **Localidade_Moradia** = nome da localidade.      
-- Se tem algum desses bens/animais (SIM/NAO):  
+
+Se tem algum desses bens/animais (SIM/NAO):  
 **fogao** = stove                
 **gelad** = refrigerator              
 **tv** =  TV                 
@@ -47,6 +48,7 @@ TERMINAR DE TRADUZIR
 **cel.smart** = smartphone  
 **internet.cel** = access internet on the cellphone    
 **face** =  if have facebook              
+
 **t.peixe** = if have fishpond, COM: with fish, SEM: without fish, NAO: no have  
 **comp.net** = If has computer and if has internet on the computer, COMP: only computer, COMP.NET: computer and internet, NAO: none.  
 **agricultura** = if there is any dweller who works with agriculture  
@@ -98,6 +100,36 @@ Plotar os indices gerados pelas dimensoes com o landuse-- ver codigo usado para 
 ```{r}
 d1 <- read.csv('/nfs/infectiousdiseases-data/survey_LU.csv')
 names(d1)
+
+```
+
+### Coordinates from MCA analysis.
+```{r}
+indMCA <- read.csv("/nfs/infectiousdiseases-data/SurveyData/ind_coord_MCA_final.csv")
+
+```
+
+### Merge data survey, LU and MCA indixes.
+```{r}
+survey_LU_IMCA <- merge(d1, indMCA) 
+names(survey_LU_IMCA)
+
+```
+
+Plot MCA indixes x LU
+```{r}
+table(d1$LU)
+
+par(mfrow=c(1,3))
+boxplot(Dim.1 ~ LU, data = survey_LU_IMCA, notch=T, ylab="Dim 1")
+abline(h=0, col=2, lty=2)
+
+boxplot(Dim.2 ~ LU, data = survey_LU_IMCA, notch=T, ylab="Dim 2")
+abline(h=0, col=2, lty=2)
+
+boxplot(Dim.3 ~ LU, data = survey_LU_IMCA, notch=T, ylab="Dim 3")
+abline(h=0, col=2, lty=2)
+
 
 
 ```
