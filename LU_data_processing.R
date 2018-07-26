@@ -3,10 +3,10 @@
 
 # read the files 
 library(raster)
-LU<-raster('~/landuse_disease/Rasterall/ACRE_2014/AC_2014_RASTER.tif')
+LU<-raster('/nfs/infectiousdiseases-data/ACRE_2014/AC_2014_RASTER.tif')
 
 ## read csv files
-covar<-read.table('~/landuse_disease/Raster/Loc_Tipo_SIGLA.csv',header = T,sep=",")
+covar<-read.table('/nfs/infectiousdiseases-data/Loc_Tipo_SIGLA.csv',header = T,sep=",")
 #covar<-read.table('~/landuse_disease/Raster/UTM_pontosColeta.csv',header = T,sep=",")
 ## overlap raster with database
 #create a spatil point object
@@ -34,7 +34,7 @@ survey=read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_survey.csv',s
 
 survey_LU<-join(covar,survey,by= 'cod_domicilio') 
 
-write.table(survey_LU,'survey_LU.csv',sep=',')
+write.table(survey_LU,'/nfs/infectiousdiseases-data/survey_LU.csv',sep=',')
 
 ###
 
