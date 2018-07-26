@@ -96,7 +96,7 @@ indMCA <- read.csv("/nfs/infectiousdiseases-data/SurveyData/ind_coord_MCA_final.
 
 ```
 
-### Merge data survey, LU and MCA indixes.
+### Merge data survey, LU and MCA indexes.
 ```{r}
 survey_LU_IMCA <- merge(d1, indMCA) 
 names(survey_LU_IMCA)
@@ -119,6 +119,7 @@ survey_LU_IMCA[which(survey_LU_IMCA$LU == 6),]$LU.acron <- "hidrog"
 survey_LU_IMCA[which(survey_LU_IMCA$LU == 9),]$LU.acron <- "n.flores" 
 table(survey_LU_IMCA$LU.acron)
 class(survey_LU_IMCA$LU.acron)
+summary(survey_LU_IMCA$LU.acron)
 
 ```
 
@@ -134,7 +135,7 @@ HIDROGRAFIA: hidrog: 6
 NAO_FLORESTA: n.flores: 9  
 
 
-Plot MCA indixes x LU
+### Plot MCA indexes x LU
 ```{r}
 table(d1$LU)
 
@@ -169,5 +170,17 @@ Table without no significance and duplicated variables
 survey_LU_IMCA1 <- survey_LU_IMCA[, -c(8, 13, 15:17, 42, 43, 45, 46, 48, 76:92)]
 
 #write.csv(survey_LU_IMCA1, file = "/nfs/infectiousdiseases-data/SurveyData/variables_LU.csv", row.names = F)
+```
+
+MCA with LU.acron with supplementary variable
+```{r}
+sLUmca <- survey_LU_IMCA1[,-c(2, 5:12)]
+ 
+mcaLU <- MCA(sLUmca, quali.sup=c(1, 2, 4, 56, 57))
+
+fviz_mca_ind(mcaLU, col.ind = "blue", habillage = sLUmca$LU.acron,
+             addEllipses = TRUE, repel = FALSE)+
+   theme_minimal()
+
 ```
 
