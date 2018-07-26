@@ -141,4 +141,6 @@ for (i in 18:26){
   
 }
 
+saveRDS(Matrix_transitions,file = "transition_matrix" )
+lattice::levelplot(Matrix_transitions)
 ```
