@@ -32,6 +32,17 @@ covar=dplyr::mutate(covar@data,LU=new_ext)
 
 survey=read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_survey.csv',sep=",",header=T)
 
-survey_LU<-join(covar,survey,by= 'cod_domicilio')
+survey_LU<-join(covar,survey,by= 'cod_domicilio') 
 
+write.table(survey_LU,'survey_LU.csv',sep=',')
+
+###
+
+### plot survey data vs covariates 
+
+library(tidyr)
+library(dplyr)
+
+
+survey_LU %>% group_by(cod_domicilio,mal.dom12_pos)
 
