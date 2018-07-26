@@ -88,3 +88,21 @@ summary(d)
 dim(d)
 ```
 
+   ID OBJECTID Value     Count                tc_2014 color
+1   0        1     1    161480     AREA_NAO_OBSERVADA     2
+2   1        2     2  13488297            PASTO_LIMPO    12
+3   2        3     3   4190591   VEGETACAO_SECUNDARIA    16
+4   3        4     4   1084559   MOSAICO_DE_OCUPACOES     8
+5   4        5     5   1264325  REGENERACAO_COM_PASTO    15
+6   5        6     6   2373275             PASTO_SUJO    13
+7   6        7     7    282342            AREA_URBANA     3
+8   7        8     8    178636                 OUTROS    10
+9   8        9     9 161459843               FLORESTA     5
+10  9       10    10     77319      AGRICULTURA_ANUAL     1
+11 10       11    11      1693 PASTO_COM_SOLO_EXPOSTO    11
+12 11       12    12    385396       DESFLORESTAMENTO     4
+13 12       13    13      5264              MINERACAO     7
+14 13       14    14        22        REFLORESTAMENTO    14
+15 14       15    15    272090            HIDROGRAFIA     6
+16 15       16    16     79352           NAO_FLORESTA     9
+
