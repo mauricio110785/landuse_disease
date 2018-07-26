@@ -17,14 +17,16 @@ names(d)
 
 ```
 
+TERMINAR DE TRADUZIR
+
 ### Variables dictionary
 **n.moradore** s= numero de moradores no domicilio  
 **mal.dom12** = numero de moradores com pelo menos uma malaria nos ultimos 12 meses  
 **mal.dom12_pos** = domicilio positivo/negativo para malaria nos ultimos 12 meses  
 **p.mal.dom12** = proporcao de moradores com malaria pelo menos 1x nos ultimos 12 meses  
 **Tipo_Loc_Atual1** = tipo de localidade, ML.u: Mâncio Lima urbano, RA.u: Rodrigues Alves urbano, ML.r: rural, RA.r: rural.  
-**Localidade_Moradia** = nome da localidade.    
-Se tem algum desses bens/animais (SIM/NAO):
+**Localidade_Moradia** = nome da localidade.      
+- Se tem algum desses bens/animais (SIM/NAO):  
 **fogao** = stove                
 **gelad** = refrigerator              
 **tv** =  TV                 
@@ -46,28 +48,30 @@ Se tem algum desses bens/animais (SIM/NAO):
 **internet.cel** = access internet on the cellphone    
 **face** =  if have facebook              
 **t.peixe** = if have fishpond, COM: with fish, SEM: without fish, NAO: no have  
-**comp.net** = if have commputer and internet, COMP: only computer, COMP.NET: computer and internet, NAO: none.  
+**comp.net** = If has computer and if has internet on the computer, COMP: only computer, COMP.NET: computer and internet, NAO: none.  
 **agricultura** = if there is any dweller who works with agriculture  
-**pesca** = if there is any dweller who fishes and/or sells fish.               
+**pesca** = Works fishing or sailing fish.               
 **floresta** =  sells forest products collection.  
-**comercio** =  works in commerce.  
-**s.publico** = works in public services.  
+**comercio** =  Works in market.  
+**s.publico** = Government employee.  
 **carteira** =  works with formal contract.            
 **mot.barqueiro** = works as a driver or boatman.  
 **ben.sociais** = if have any social benefit.  
-**b.trab** =  labor benefit.  
-**forro** = se tem ou nao forro na casa: NENHUM/PARTE/TUDO   
-**parede1** =  MADEIRA/TIJOLO
-**piso1** = tipo de piso da casa: 
-**frestas** se tem muitas, poucas ou nao tem
-**telas** se tem em algumas janelas, em todas ou nao tem.
-**acesso** = qual o tipo de acesso para o domicilio/localidade, podendo ser rio, estrada pavimentada, de terra e trilha.  
-**uso.estrada** = relacionada com a passagem de algum veiculo motorizado pela estrada quando chove. Pode nao ter estrada, pode nao passar nenhum veiculo ou pode passar algum. Veiculos: carro, moto e pickup.  
-**alaga.acesso** = se a estrada ou caminho de acesso costuma alagar. POde ser NUNCA, ASVEZES ou SEMPRE. alaga.porta = se alaga ate a porta do domicilio  
-**baixo** = se tem baixo e/ou igarape perto do domicilio.  
-**agua.rede** = se tem acesso a rede publica de agua (sim/nao) pelo menos em um desses itens: cozinhar e beber.
-**agua.rio** (sim/nao) = rio, cacimba, nascente, pelo menos uma dessas opções para cozinha ou beber ou lavar a louça.
-**banho** = se o local de banho é aberto ou fechado.
+**b.trab** =  Labor benefits as: retirement, health assistance, unemployment benefits and pensioner.
+**forro** = If the house has or not ceiling lining: NENHUM/PARTE/TUDO.     
+**parede1** = if the wall of the house is brick (or cement) or wood (MADEIRA/TIJOLO)  
+**piso1** = type of house floor, Brick/brickwork or wood (CIM.CER/MADEIRA).  
+**frestas** if have cracks in the wall (SIM/NAO).  
+**telas** = if have , em todas ou nao tem.  
+**acesso** = Locality access: access by river, paved road, dirt road, passage by trail or pathway (PAV/RIO/TERRA/TRILHA).      
+**uso.estrada** = Traffic of some motor vehicle by the road when is raining, do not have road, none, some vehicle pass through (NAO/NAOTEM/SIM).    
+**alaga.acesso** = If the road or access to the house used to flood, Do not flood, do not floods (NUNCA/ASVEZES/SEMPRE). 
+**alaga.porta** = If the flood reach the door house (SIM/NAO).   
+**baixo** = If there is a swamp or a small river close to the house (SIM/NAO).  
+**ac.agua** = If there is piped water in the household, Do not have, Outside the household, Inside the household (ENCDENTRO/ENCFORA/NAOTEM).  
+**agua.rede** = If the water used to drink or cook in the house came from the public service.
+**agua.rio** = If the water used to drink or cook in the house came from natural water reservoirs (sim/nao).   
+**banho** = Place of bathing is open or closed (SIM/NAO).  
 **neces.** = bom indicador de renda e de bens, local onde faz as necessidades podendo ser FOSSA, VASO (vaso sanitário) ou AREA (área aberta).  
 **louca** = local usado para lavar a louça (fechado/aberto).
 **ambiente** = lixo descartado no ambiente podendo ser de diversas formas.
@@ -87,4 +91,17 @@ Se tem algum desses bens/animais (SIM/NAO):
 summary(d)
 dim(d)
 ```
+
+
+### Data with landuse
+Plotar os indices gerados pelas dimensoes com o landuse-- ver codigo usado para regressao
+```{r}
+d1 <- read.csv('/nfs/infectiousdiseases-data/survey_LU.csv')
+names(d1)
+
+
+```
+
+
+
 
