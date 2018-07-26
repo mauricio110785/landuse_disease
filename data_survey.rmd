@@ -12,8 +12,8 @@ editor_options:
 ### Import database
 ```{r setup, include=FALSE}
 d <- read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_survey.csv')
-head(d)
-names(d)
+#head(d)
+#names(d)
 
 ```
 
@@ -90,29 +90,10 @@ Se tem algum desses bens/animais (SIM/NAO):
 
 
 ```{r}
-summary(d)
+#summary(d)
 dim(d)
 ```
 
-<<<<<<< HEAD
-   ID OBJECTID Value     Count                tc_2014 color
-1   0        1     1    161480     AREA_NAO_OBSERVADA     2
-2   1        2     2  13488297            PASTO_LIMPO    12
-3   2        3     3   4190591   VEGETACAO_SECUNDARIA    16
-4   3        4     4   1084559   MOSAICO_DE_OCUPACOES     8
-5   4        5     5   1264325  REGENERACAO_COM_PASTO    15
-6   5        6     6   2373275             PASTO_SUJO    13
-7   6        7     7    282342            AREA_URBANA     3
-8   7        8     8    178636                 OUTROS    10
-9   8        9     9 161459843               FLORESTA     5
-10  9       10    10     77319      AGRICULTURA_ANUAL     1
-11 10       11    11      1693 PASTO_COM_SOLO_EXPOSTO    11
-12 11       12    12    385396       DESFLORESTAMENTO     4
-13 12       13    13      5264              MINERACAO     7
-14 13       14    14        22        REFLORESTAMENTO    14
-15 14       15    15    272090            HIDROGRAFIA     6
-16 15       16    16     79352           NAO_FLORESTA     9
-=======
 
 ### Data with landuse
 Plotar os indices gerados pelas dimensoes com o landuse-- ver codigo usado para regressao
@@ -135,18 +116,49 @@ names(survey_LU_IMCA)
 
 ```
 
+Names for LU
+```{r}
+table(survey_LU_IMCA$LU)
+
+survey_LU_IMCA$LU.acron <- NA
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 2),]$LU.acron <- "no.obs" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 8),]$LU.acron <- "mos.ocp" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 15),]$LU.acron <- "reg.past" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 3),]$LU.acron <- "a.urb"  
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 5),]$LU.acron <- "florest" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 4),]$LU.acron <- "desflor" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 7),]$LU.acron <- "miner" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 6),]$LU.acron <- "hidrog" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 9),]$LU.acron <- "n.flores" 
+table(survey_LU_IMCA$LU.acron)
+class(survey_LU_IMCA$LU.acron)
+
+```
+
+- Class of LU and acronym  
+AREA_NAO_OBSERVADA: no.obs: 2  
+MOSAICO_DE_OCUPACOES: mos.ocp: 8  
+REGENERACAO_COM_PASTO: reg.past: 15  
+AREA_URBANA: a.urb: 3  
+FLORESTA: florest: 5  
+DESFLORESTAMENTO: desflor: 4  
+MINERACAO: miner: 7  
+HIDROGRAFIA: hidrog: 6  
+NAO_FLORESTA: n.flores: 9  
+
+
 Plot MCA indixes x LU
 ```{r}
 table(d1$LU)
 
 par(mfrow=c(1,3))
-boxplot(Dim.1 ~ LU, data = survey_LU_IMCA, notch=T, ylab="Dim 1")
+boxplot(Dim.1 ~ LU.acron, data = survey_LU_IMCA, notch=T, ylab="Dim 1", las = 2)
 abline(h=0, col=2, lty=2)
 
-boxplot(Dim.2 ~ LU, data = survey_LU_IMCA, notch=T, ylab="Dim 2")
+boxplot(Dim.2 ~ LU.acron, data = survey_LU_IMCA, notch=T, ylab="Dim 2", las = 2)
 abline(h=0, col=2, lty=2)
 
-boxplot(Dim.3 ~ LU, data = survey_LU_IMCA, notch=T, ylab="Dim 3")
+boxplot(Dim.3 ~ LU.acron, data = survey_LU_IMCA, notch=T, ylab="Dim 3", las = 2)
 abline(h=0, col=2, lty=2)
 
 
@@ -155,5 +167,4 @@ abline(h=0, col=2, lty=2)
 
 
 
->>>>>>> 86a3d4fcd71ff3dcce7f698f6d2b86c76480e5c6
 
