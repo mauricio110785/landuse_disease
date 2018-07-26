@@ -1,0 +1,173 @@
+---
+title: "Data survey"
+author: "Raquel Lana, Andres Baeza, Mauricio Santos Vega"
+date: "25/07/2018"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+# Data exploration
+
+### Import database
+
+Survey data with landuse:
+```{r}
+d1 <- read.csv('/nfs/infectiousdiseases-data/survey_LU.csv')
+names(d1)
+
+```
+
+Obs.: TERMINAR DE TRADUZIR
+
+### Variables dictionary
+**n.moradore** s= numero de moradores no domicilio  
+**mal.dom12** = numero de moradores com pelo menos uma malaria nos ultimos 12 meses  
+**mal.dom12_pos** = domicilio positivo/negativo para malaria nos ultimos 12 meses  
+**p.mal.dom12** = proporcao de moradores com malaria pelo menos 1x nos ultimos 12 meses  
+**Tipo_Loc_Atual1** = tipo de localidade, ML.u: Mâncio Lima urbano, RA.u: Rodrigues Alves urbano, ML.r: rural, RA.r: rural.  
+**Localidade_Moradia** = nome da localidade.      
+
+Se tem algum desses bens/animais (SIM/NAO):  
+**fogao** = stove                
+**gelad** = refrigerator              
+**tv** =  TV                 
+**m.lavar** = washing machine            
+**ferro** = iron  
+**sofa** = sofa  
+**liquid** =  blender  
+**vhs.dvd** = DVD ou VHS            
+**microon.** =  microwave           
+**carro** = car               
+**moto** =  motorcycle  
+**barco** = boat              
+**cavalo** =  horse  
+**boi** = ox  
+**galinha** = chicken  
+**porco** = pig              
+**motoserra** = chainsaw  
+**cel.smart** = smartphone  
+**internet.cel** = access internet on the cellphone    
+**face** =  if have facebook              
+
+**t.peixe** = if have fishpond, COM: with fish, SEM: without fish, NAO: no have  
+**comp.net** = If has computer and if has internet on the computer, COMP: only computer, COMP.NET: computer and internet, NAO: none.  
+**agricultura** = if there is any dweller who works with agriculture  
+**pesca** = Works fishing or sailing fish.               
+**floresta** =  sells forest products collection.  
+**comercio** =  Works in market.  
+**s.publico** = Government employee.  
+**carteira** =  works with formal contract.            
+**mot.barqueiro** = works as a driver or boatman.  
+**ben.sociais** = if have any social benefit.  
+**b.trab** =  Labor benefits as: retirement, health assistance, unemployment benefits and pensioner.
+**forro** = If the house has or not ceiling lining: NENHUM/PARTE/TUDO.     
+**parede1** = if the wall of the house is brick (or cement) or wood (MADEIRA/TIJOLO)  
+**piso1** = type of house floor, Brick/brickwork or wood (CIM.CER/MADEIRA).  
+**frestas** if have cracks in the wall (SIM/NAO).  
+**telas** = if have , em todas ou nao tem.  
+**acesso** = Locality access: access by river, paved road, dirt road, passage by trail or pathway (PAV/RIO/TERRA/TRILHA).      
+**uso.estrada** = Traffic of some motor vehicle by the road when is raining, do not have road, none, some vehicle pass through (NAO/NAOTEM/SIM).    
+**alaga.acesso** = If the road or access to the house used to flood, Do not flood, do not floods (NUNCA/ASVEZES/SEMPRE). 
+**alaga.porta** = If the flood reach the door house (SIM/NAO).   
+**baixo** = If there is a swamp or a small river close to the house (SIM/NAO).  
+**ac.agua** = If there is piped water in the household, Do not have, Outside the household, Inside the household (ENCDENTRO/ENCFORA/NAOTEM).  
+**agua.rede** = If the water used to drink or cook in the house came from the public service.
+**agua.rio** = If the water used to drink or cook in the house came from natural water reservoirs (sim/nao).   
+**banho** = Place of bathing is open or closed (SIM/NAO).  
+**neces.** = bom indicador de renda e de bens, local onde faz as necessidades podendo ser FOSSA, VASO (vaso sanitário) ou AREA (área aberta).  
+**louca** = local usado para lavar a louça (fechado/aberto).
+**ambiente** = lixo descartado no ambiente podendo ser de diversas formas.
+**coleta1** = lixo coletado pelo serviço público.
+**perto.mata** = atividade noturna perto da mata  
+**dentro.casa** = atividade noturna dentro de casa
+**freq.agua.mata** = frequencia que entra no rio, igarape, mata
+**dormir.exp** = frequencia que dorme exposto
+**banho.rec** = frequencia que toma banho para recreacao
+**freq.extrat** = frequencia que costuma pescar ou colher produtos da mata
+**des.beneficio** = deslocamento para buscar beneficios sociais.
+**ter.mosq** = se tem ou nao mosquiteiro em casa  
+**uso.const.mosq** = se nunca deixar de usar mosquiteiro  
+
+
+### Coordinates from MCA analysis.
+```{r}
+indMCA <- read.csv("/nfs/infectiousdiseases-data/SurveyData/ind_coord_MCA_final.csv")
+
+```
+
+### Merge data survey, LU and MCA indixes.
+```{r}
+survey_LU_IMCA <- merge(d1, indMCA) 
+names(survey_LU_IMCA)
+
+```
+
+Names for LU
+```{r}
+table(survey_LU_IMCA$LU)
+
+survey_LU_IMCA$LU.acron <- NA
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 2),]$LU.acron <- "no.obs" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 8),]$LU.acron <- "mos.ocp" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 15),]$LU.acron <- "reg.past" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 3),]$LU.acron <- "a.urb"  
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 5),]$LU.acron <- "florest" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 4),]$LU.acron <- "desflor" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 7),]$LU.acron <- "miner" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 6),]$LU.acron <- "hidrog" 
+survey_LU_IMCA[which(survey_LU_IMCA$LU == 9),]$LU.acron <- "n.flores" 
+table(survey_LU_IMCA$LU.acron)
+class(survey_LU_IMCA$LU.acron)
+
+```
+
+- Class of LU and acronym  
+AREA_NAO_OBSERVADA: no.obs: 2  
+MOSAICO_DE_OCUPACOES: mos.ocp: 8  
+REGENERACAO_COM_PASTO: reg.past: 15  
+AREA_URBANA: a.urb: 3  
+FLORESTA: florest: 5  
+DESFLORESTAMENTO: desflor: 4  
+MINERACAO: miner: 7  
+HIDROGRAFIA: hidrog: 6  
+NAO_FLORESTA: n.flores: 9  
+
+
+Plot MCA indixes x LU
+```{r}
+table(d1$LU)
+
+par(mfrow=c(1,3))
+boxplot(Dim.1 ~ LU.acron, data = survey_LU_IMCA, notch=T, ylab="Dim 1", las = 2)
+abline(h=0, col=2, lty=2)
+
+boxplot(Dim.2 ~ LU.acron, data = survey_LU_IMCA, notch=T, ylab="Dim 2", las = 2)
+abline(h=0, col=2, lty=2)
+
+boxplot(Dim.3 ~ LU.acron, data = survey_LU_IMCA, notch=T, ylab="Dim 3", las = 2)
+abline(h=0, col=2, lty=2)
+
+```
+
+Test-chi LU and variables
+```{r}
+library(FactoMineR)
+library(factoextra)
+
+survey_LU_IMCA$LU.acron <- as.factor(survey_LU_IMCA$LU.acron)
+
+qui2LU = catdes(survey_LU_IMCA, num.var = 93, proba = 0.05)$test.chi2
+dim(qui2LU)[1] # total de variaveis significativas
+names(survey_LU_IMCA)[!(names(survey_LU_IMCA)%in%row.names(qui2LU))]
+names(survey_LU_IMCA)[(names(survey_LU_IMCA)%in%row.names(qui2LU))]
+
+```
+
+Table without no significance and duplicated variables
+```{r}
+survey_LU_IMCA1 <- survey_LU_IMCA[, -c(8, 13, 15:17, 42, 43, 45, 46, 48, 76:92)]
+
+#write.csv(survey_LU_IMCA1, file = "/nfs/infectiousdiseases-data/SurveyData/variables_LU.csv", row.names = F)
+```
+
