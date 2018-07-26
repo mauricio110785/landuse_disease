@@ -10,10 +10,11 @@ editor_options:
 # Data exploration
 
 ### Import database
-```{r setup, include=FALSE}
-d <- read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_survey.csv')
-#head(d)
-#names(d)
+
+Survey data with landuse:
+```{r}
+d1 <- read.csv('/nfs/infectiousdiseases-data/survey_LU.csv')
+names(d1)
 
 ```
 
@@ -89,20 +90,6 @@ Se tem algum desses bens/animais (SIM/NAO):
 **uso.const.mosq** = se nunca deixar de usar mosquiteiro  
 
 
-```{r}
-#summary(d)
-dim(d)
-```
-
-
-### Data with landuse
-Plotar os indices gerados pelas dimensoes com o landuse-- ver codigo usado para regressao
-```{r}
-d1 <- read.csv('/nfs/infectiousdiseases-data/survey_LU.csv')
-names(d1)
-
-```
-
 ### Coordinates from MCA analysis.
 ```{r}
 indMCA <- read.csv("/nfs/infectiousdiseases-data/SurveyData/ind_coord_MCA_final.csv")
@@ -161,10 +148,26 @@ abline(h=0, col=2, lty=2)
 boxplot(Dim.3 ~ LU.acron, data = survey_LU_IMCA, notch=T, ylab="Dim 3", las = 2)
 abline(h=0, col=2, lty=2)
 
+```
 
+Test-chi LU and variables
+```{r}
+library(FactoMineR)
+library(factoextra)
+
+survey_LU_IMCA$LU.acron <- as.factor(survey_LU_IMCA$LU.acron)
+
+qui2LU = catdes(survey_LU_IMCA, num.var = 93, proba = 0.05)$test.chi2
+dim(qui2LU)[1] # total de variaveis significativas
+names(survey_LU_IMCA)[!(names(survey_LU_IMCA)%in%row.names(qui2LU))]
+names(survey_LU_IMCA)[(names(survey_LU_IMCA)%in%row.names(qui2LU))]
 
 ```
 
+Table without no significance and duplicated variables
+```{r}
+survey_LU_IMCA1 <- survey_LU_IMCA[, -c(8, 13, 15:17, 42, 43, 45, 46, 48, 76:92)]
 
-
+#write.csv(survey_LU_IMCA1, file = "/nfs/infectiousdiseases-data/SurveyData/variables_LU.csv", row.names = F)
+```
 
