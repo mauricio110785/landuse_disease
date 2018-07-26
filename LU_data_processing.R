@@ -22,9 +22,16 @@ points(covar,add=T,col='red')
 #covar_trs=spTransform(covar,CRSobj = crs(LU))
 
 #extract land-use types from raster image
-new_ext=extract(LU,covar)
+new_ext=raster::extract(LU,covar)
 
 # add new column with LU to the table
 covar=dplyr::mutate(covar@data,LU=new_ext)
+
+# merge the two data sets 
+# read the dataset of the sruvey 
+
+survey=read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_survey.csv',sep=",",header=T)
+
+survey_LU<-join(covar,survey,by= 'cod_domicilio')
 
 
