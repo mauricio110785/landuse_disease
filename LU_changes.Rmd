@@ -2,7 +2,7 @@
 title: "landUseChanges"
 author: "Andres, Raquel, Mauricio"
 date: "7/25/2018"
-output: html_document
+output: ioslides_presentation
 editor_options: 
   chunk_output_type: console
 ---
@@ -11,7 +11,11 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
 
+```
+
+##Read data
 ```{r}
 library(raster)
 #read alrge scale
@@ -24,11 +28,33 @@ LU_2004<-raster('~/landuse_disease/Rasterall/ACRE_2004/AC_2004_RASTER.tif')
 e <- extent(-75, -71, -9, -7)
 LU_2014_SA=crop(LU_2014,e)
 LU_2004_SA=crop(LU_2004,e)
+
+png(filename = "~/landuse_disease/SA_raster2004.png",width = 10,height = 6,units = "cm",res = 300)
+plot(LU_2004_SA)
+dev.off()
+
+png(filename = "~/landuse_disease/SA_raster2014.png",width = 10,height = 6,units = "cm",res = 300)
+plot(LU_2014_SA)
+dev.off()
+```
+
+##Land uses in 2004
+```{r}
+require(png)     #read png files
+require(grid)    #graphics layout
+img <- readPNG("~/landuse_disease/SA_raster2004.png")
+grid.raster(img)
+```
+
+##Land uses 2014
+```{r}
+img <- readPNG("~/landuse_disease/SA_raster2014.png")
+grid.raster(img)
 ```
 
 
-
-```{r}
+##Evaluate the frequency of land-types
+```{r frecuencias, cache = TRUE}
 f04<-freq(LU_2004_SA)
 f14<-freq(LU_2014_SA)
 f04=as.data.frame(f04)
@@ -42,7 +68,8 @@ m_tableLUchange<-merge(dat_LU14,dat_LU04,by="color")
 
 ```
 
-```{r}
+##Changes in Land-use
+```{r,out.width="60%"}
 barplot(height = (m_tableLUchange$Count.x-m_tableLUchange$Count.y)/(m_tableLUchange$Count.x+m_tableLUchange$Count.y),names.arg=m_tableLUchange$tc_2014,cex.name=0.4,las=2)
 
 
@@ -50,6 +77,8 @@ barplot(height = (m_tableLUchange$Count.x-m_tableLUchange$Count.y)/(m_tableLUcha
 
 
 ##RECLASIFICATION
+Both Images were reclasified 
+18 Land-types where reduced to 8 types
 ```{r}
 #Others 18
 #pastos 19
@@ -107,12 +136,12 @@ rc_v_2004=c(1,18,
 
 reclass_matrix_2014=matrix(rc_v_2014, ncol=2, byrow=TRUE)
 reclass_matrix_2004=matrix(rc_v_2004, ncol=2, byrow=TRUE)
-LU_rc2004 <- reclassify(LU_2004_SA, reclass_matrix)
-LU_rc2014 <- reclassify(LU_2014_SA, reclass_matrix)
+LU_rc2004 <- reclassify(LU_2004_SA, reclass_matrix_2004)
+LU_rc2014 <- reclassify(LU_2014_SA, reclass_matrix_2014)
 ```
 
-#create the tranissiton matrix
-```{r}
+##Create the tranissiton matrix
+```{r, eval=FALSE}
 Matrix_transitions=matrix(ncol=9,nrow=9)
 colnames(Matrix_transitions)<-names_LUtypes
 rownames(Matrix_transitions)<-colnames(Matrix_transitions)
@@ -141,6 +170,13 @@ for (i in 18:26){
   
 }
 
-saveRDS(Matrix_transitions,file = "transition_matrix" )
+saveRDS(Matrix_transitions,file = "transition_matrix.rds")
+```
+
+
+##Transition probabilities between land-use types
+```{r,out.width="60%"}
+Matrix_transitions<-readRDS("~/landuse_disease/transition_matrix.rds")
+
 lattice::levelplot(Matrix_transitions)
 ```
