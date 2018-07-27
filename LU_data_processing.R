@@ -2,6 +2,8 @@
 
 # read the files 
 library(raster)
+library(dbplyr)
+library(plyr)
 LU<-raster('/nfs/infectiousdiseases-data/RasterAllYears/ACRE_2014/AC_2014_RASTER.tif')
 
 ## read csv files
@@ -33,7 +35,7 @@ survey=read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_survey.csv',s
 
 survey_LU<-join(covar,survey,by= 'cod_domicilio') 
 
-write.table(survey_LU,'/nfs/infectiousdiseases-data/SurveyData/survey_LU.csv',sep=',')
+#write.table(survey_LU,'/nfs/infectiousdiseases-data/SurveyData/survey_LU.csv',sep=',')
 
 ###
 
@@ -42,6 +44,14 @@ write.table(survey_LU,'/nfs/infectiousdiseases-data/SurveyData/survey_LU.csv',se
 library(tidyr)
 library(dplyr)
 
+survey_chi=read.csv('/nfs/infectiousdiseases-data/SurveyData/variables_LU.csv',sep=",",header=T)
+#i<-10
+#b<-names(survey_chi)[-(1:9)][i]
+a<-count(survey_chi,c('LU.acron','agricultura'))
+ggplot(data=a, aes(x=(LU.acron), y=(freq),color=agricultura,fill=agricultura)) +
+  geom_bar(stat="identity")+theme_minimal()+
+  scale_fill_brewer(palette="Dark2")
 
-survey_LU %>% group_by(cod_domicilio,mal.dom12_pos)
+  
 
+survey_LU %>%  count('Localidade_Moradia','Localidade_Moradia') %>% count('analf.adultos1','banho')
