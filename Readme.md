@@ -33,8 +33,8 @@ complete
 Malaria cases from 2003 to the present data were obtained from the Epidemiological Surveillance System (SIVEP) of the Ministry of Health, Brazil.  
 
 ### Surveyed localities in Acre
-Find all surveyed localities and the urban gradient classification!  
-https://rawgit.com/anapdalasta/Oficina-Alto-Juru-/master/index.html
+Find all surveyed localities and the urban gradient classification!
+https://rawgit.com/anapdalasta/Localities-of-Alto-Juru-region/master/index.html  
 
 
 ## Collaborators
